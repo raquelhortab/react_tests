@@ -16,13 +16,10 @@ class WebTest extends React.Component {
             stepList: (props.initialStepList ? props.initialStepList : []),
             lastKey: (props.initialStepList && props.initialStepList.slice(-1) ? props.initialStepList.slice(-1)[0].key : 0)
         };
-        this.handleOnChange = this.handleOnChange.bind(this);
         this.handleAddStep = this.handleAddStep.bind(this);
         this.handleStepChange = this.handleStepChange.bind(this);
-    }
-
-    handleOnChange(event){
-        this.setState({type: event.target.value});
+        this.handleRemoveStep = this.handleRemoveStep.bind(this);
+        this.handleKindChange = this.handleKindChange.bind(this);
     }
 
     // item shoud be an object with the attributes: attribute and value
@@ -34,18 +31,17 @@ class WebTest extends React.Component {
                 stepList: newList,
                 lastKey: state.lastKey + 1
             }
-        });
+        }, this.updateObject);
     }
 
     handleStepChange(index, newElement){
         this.setState((state, props) => {
             var newList = [...state.stepList];
             newList[index].value = newElement;
-            this.updateObject();
             return {
                 stepList: newList
             }
-        });
+        }, this.updateObject);
     }
 
     handleKindChange(index, newKind){
@@ -53,20 +49,22 @@ class WebTest extends React.Component {
             var newList = [...state.stepList];
             newList[index].kind = newKind;
             newList[index].value = undefined;
-            this.updateObject();
             return {
                 stepList: newList
             }
-        });
+        },this.updateObject);
     }
 
     handleRemoveStep(key){
+        var callback = function () {
+            this.updateObject();
+        };
         this.setState((state, props) => {
             var newList = state.stepList.filter((val, i) => val.key != key);
             return {
                 stepList: newList
             }
-        }, this.forceUpdate);
+        }, this.updateObject);
     }
 
     updateObject(){

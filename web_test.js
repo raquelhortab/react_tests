@@ -31,21 +31,17 @@ var WebTest = function (_React$Component) {
             stepList: props.initialStepList ? props.initialStepList : [],
             lastKey: props.initialStepList && props.initialStepList.slice(-1) ? props.initialStepList.slice(-1)[0].key : 0
         };
-        _this.handleOnChange = _this.handleOnChange.bind(_this);
         _this.handleAddStep = _this.handleAddStep.bind(_this);
         _this.handleStepChange = _this.handleStepChange.bind(_this);
+        _this.handleRemoveStep = _this.handleRemoveStep.bind(_this);
+        _this.handleKindChange = _this.handleKindChange.bind(_this);
         return _this;
     }
 
+    // item shoud be an object with the attributes: attribute and value
+
+
     _createClass(WebTest, [{
-        key: "handleOnChange",
-        value: function handleOnChange(event) {
-            this.setState({ type: event.target.value });
-        }
-
-        // item shoud be an object with the attributes: attribute and value
-
-    }, {
         key: "handleAddStep",
         value: function handleAddStep() {
             this.setState(function (state, props) {
@@ -55,40 +51,37 @@ var WebTest = function (_React$Component) {
                     stepList: newList,
                     lastKey: state.lastKey + 1
                 };
-            });
+            }, this.updateObject);
         }
     }, {
         key: "handleStepChange",
         value: function handleStepChange(index, newElement) {
-            var _this2 = this;
-
             this.setState(function (state, props) {
                 var newList = [].concat(_toConsumableArray(state.stepList));
                 newList[index].value = newElement;
-                _this2.updateObject();
                 return {
                     stepList: newList
                 };
-            });
+            }, this.updateObject);
         }
     }, {
         key: "handleKindChange",
         value: function handleKindChange(index, newKind) {
-            var _this3 = this;
-
             this.setState(function (state, props) {
                 var newList = [].concat(_toConsumableArray(state.stepList));
                 newList[index].kind = newKind;
                 newList[index].value = undefined;
-                _this3.updateObject();
                 return {
                     stepList: newList
                 };
-            });
+            }, this.updateObject);
         }
     }, {
         key: "handleRemoveStep",
         value: function handleRemoveStep(key) {
+            var callback = function callback() {
+                this.updateObject();
+            };
             this.setState(function (state, props) {
                 var newList = state.stepList.filter(function (val, i) {
                     return val.key != key;
@@ -96,7 +89,7 @@ var WebTest = function (_React$Component) {
                 return {
                     stepList: newList
                 };
-            }, this.forceUpdate);
+            }, this.updateObject);
         }
     }, {
         key: "updateObject",
@@ -124,20 +117,20 @@ var WebTest = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            var _this4 = this;
+            var _this2 = this;
 
             var items = this.state.stepList.map(function (item, index) {
                 var element;
-                var ElementComponent = _this4.getComponent(item.kind);
+                var ElementComponent = _this2.getComponent(item.kind);
                 if (ElementComponent !== undefined) {
-                    element = React.createElement(ElementComponent, { index: index, handler: _this4.handleStepChange.bind(_this4), initialState: item.value });
+                    element = React.createElement(ElementComponent, { index: index, handler: _this2.handleStepChange.bind(_this2), initialState: item.value });
                 } else {
                     element = "";
                 }
-                var selector = React.createElement(WebTestSelector, { initialKind: item.kind, index: index, handler: _this4.handleKindChange.bind(_this4) });
+                var selector = React.createElement(WebTestSelector, { initialKind: item.kind, index: index, handler: _this2.handleKindChange.bind(_this2) });
                 var remove = React.createElement(
                     "a",
-                    { onClick: _this4.handleRemoveStep.bind(_this4, item.key) },
+                    { onClick: _this2.handleRemoveStep.bind(_this2, item.key) },
                     "Remove step"
                 );
                 return React.createElement(
