@@ -1,3 +1,7 @@
+//import React, { Component } from "react";
+//import ReactDOM from "react-dom";
+// import WebTest from "./web_test.jsx";
+
 class WebTestList extends React.Component {
 
     constructor(props) {
@@ -71,3 +75,5 @@ class WebTestList extends React.Component {
     }
 
 }
+
+//export default WebTestList;

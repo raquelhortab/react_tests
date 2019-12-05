@@ -1,3 +1,6 @@
+//import React, { Component } from "react";
+//import ReactDOM from "react-dom";
+// import WebTestStyleAttribute from "./web_test_style_attribute.jsx";
 
 class WebTestStyleAttributeList extends React.Component{
 
@@ -76,4 +79,4 @@ class WebTestStyleAttributeList extends React.Component{
     }
 }
 
-// export default WebTestStyleAttributeList;
+//export default WebTestStyleAttributeList;

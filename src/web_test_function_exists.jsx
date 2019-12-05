@@ -1,3 +1,6 @@
+//import React, { Component } from "react";
+//import ReactDOM from "react-dom";
+
 class WebTestFunctionExists extends React.Component{
 
     constructor(props) {
@@ -26,4 +29,4 @@ class WebTestFunctionExists extends React.Component{
 
 }
 
-// export default WebTestFunctionExists;
+//export default WebTestFunctionExists;

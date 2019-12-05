@@ -1,10 +1,12 @@
-// import WebTestStyleAttributeList from "./web_test_style_attribute_list";
-// import WebTestClick from "./web_test_click";
-// import WebTestType from "./web_test_type";
-// import WebTestExpectFunctionCalled from "./web_test_expect_function_called";
-// import WebTestFunctionExists from "./web_test_function_exists";
-// import WebTestSelectorExists from "./web_test_selector_exists";
-// import WebTestSelector from "./web_test_selector";
+//import React, { Component } from "react";
+// import WebTestStyleAttributeList from "./web_test_style_attribute_list.jsx"
+// import WebTestFunctionExists from "./web_test_function_exists.jsx"
+// import WebTestSelectorExists from "./web_test_selector_exists.jsx"
+// import WebTestClick from "./web_test_click.jsx"
+// import WebTestType from "./web_test_type.jsx"
+// import WebTestExpectFunctionCalled from "./web_test_expect_function_called.jsx"
+// import WebTestSelector from "./web_test_selector.jsx"
+
 
 class WebTest extends React.Component {
 
@@ -120,4 +122,4 @@ class WebTest extends React.Component {
     }
 }
 
-// export default WebTest;
+//export default WebTest;

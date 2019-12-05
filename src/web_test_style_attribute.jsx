@@ -1,3 +1,6 @@
+//import React, { Component } from "react";
+//import ReactDOM from "react-dom";
+
 class WebTestStyleAttribute extends React.Component {
 
   constructor(props){
@@ -43,4 +46,4 @@ class WebTestStyleAttribute extends React.Component {
 
 }
 
-// export default WebTestStyleAttribute;
+//export default WebTestStyleAttribute;

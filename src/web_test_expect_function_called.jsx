@@ -1,3 +1,6 @@
+//import React, { Component } from "react";
+//import ReactDOM from "react-dom";
+
 class WebTestExpectFunctionCalled extends React.Component {
 
     constructor(props) {
@@ -27,4 +30,4 @@ class WebTestExpectFunctionCalled extends React.Component {
 
 }
 
-// export default WebTestExpectFunctionCalled;
+//export default WebTestExpectFunctionCalled;
