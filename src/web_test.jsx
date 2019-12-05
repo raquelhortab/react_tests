@@ -9,20 +9,23 @@
 class WebTest extends React.Component {
 
     constructor(props) {
-        console.log(props.initialStepList);
-        console.log(props.initialStepList.slice(-1)[0].key);
         super(props);
-        this.state = {
-            stepList: (props.initialStepList ? props.initialStepList : []),
-            lastKey: (props.initialStepList && props.initialStepList.slice(-1) ? props.initialStepList.slice(-1)[0].key : 0)
-        };
+        if(props.initialState){
+            this.state = props.initialState;
+        }
+        else{
+            this.state = {
+                stepList: (props.initialStepList ? props.initialStepList : []),
+                lastKey: (props.initialStepList && props.initialStepList.length>0 ? props.initialStepList.slice(-1)[0].key : 0)
+            };
+        }
+
         this.handleAddStep = this.handleAddStep.bind(this);
         this.handleStepChange = this.handleStepChange.bind(this);
         this.handleRemoveStep = this.handleRemoveStep.bind(this);
         this.handleKindChange = this.handleKindChange.bind(this);
     }
 
-    // item shoud be an object with the attributes: attribute and value
     handleAddStep(){
         this.setState((state, props) => {
             var newList = [...state.stepList];
@@ -65,11 +68,6 @@ class WebTest extends React.Component {
                 stepList: newList
             }
         }, this.updateObject);
-    }
-
-    updateObject(){
-        window.web_test = this.state;
-        console.log(window.web_test);
     }
 
     getComponent(kind){

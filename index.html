@@ -17,8 +17,11 @@
 
  </div>
 
+</body>
+
  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+ <script src="web_test_list.js"></script>
  <script src="web_test.js"></script>
  <script src="web_test_style_attribute_list.js"></script>
  <script src="web_test_action.js"></script>
@@ -34,16 +37,16 @@
 <script>
  const domContainer = document.querySelector('#container');
  var stepList = [
-  {
-   kind: "selector_style",
-   key: 1,
-   value: {
-    selector: "",
-    listItems: [{attribute: "color", value:"red"}, {attribute: "size", value: "big"}]
-   }
-  }
+  // {
+  //  kind: "selector_style",
+  //  key: 1,
+  //  value: {
+  //   selector: "",
+  //   listItems: [{attribute: "color", value:"red"}, {attribute: "size", value: "big"}]
+  //  }
+  // }
  ];
- ReactDOM.render( React.createElement(WebTest,{initialStepList:stepList}), domContainer);
+ ReactDOM.render( React.createElement(WebTestList), domContainer);
 </script>
 
 </html>

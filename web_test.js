@@ -22,24 +22,23 @@ var WebTest = function (_React$Component) {
     function WebTest(props) {
         _classCallCheck(this, WebTest);
 
-        console.log(props.initialStepList);
-        console.log(props.initialStepList.slice(-1)[0].key);
-
         var _this = _possibleConstructorReturn(this, (WebTest.__proto__ || Object.getPrototypeOf(WebTest)).call(this, props));
 
-        _this.state = {
-            stepList: props.initialStepList ? props.initialStepList : [],
-            lastKey: props.initialStepList && props.initialStepList.slice(-1) ? props.initialStepList.slice(-1)[0].key : 0
-        };
+        if (props.initialState) {
+            _this.state = props.initialState;
+        } else {
+            _this.state = {
+                stepList: props.initialStepList ? props.initialStepList : [],
+                lastKey: props.initialStepList && props.initialStepList.length > 0 ? props.initialStepList.slice(-1)[0].key : 0
+            };
+        }
+
         _this.handleAddStep = _this.handleAddStep.bind(_this);
         _this.handleStepChange = _this.handleStepChange.bind(_this);
         _this.handleRemoveStep = _this.handleRemoveStep.bind(_this);
         _this.handleKindChange = _this.handleKindChange.bind(_this);
         return _this;
     }
-
-    // item shoud be an object with the attributes: attribute and value
-
 
     _createClass(WebTest, [{
         key: "handleAddStep",
@@ -90,12 +89,6 @@ var WebTest = function (_React$Component) {
                     stepList: newList
                 };
             }, this.updateObject);
-        }
-    }, {
-        key: "updateObject",
-        value: function updateObject() {
-            window.web_test = this.state;
-            console.log(window.web_test);
         }
     }, {
         key: "getComponent",
