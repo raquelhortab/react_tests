@@ -104,6 +104,7 @@ class WebTest extends React.Component {
             return(
                 <li key={item.key}>
                     <div>
+                        <span>Step {index+1}</span><br/>
                         {selector}
                         {element}
                         {remove}

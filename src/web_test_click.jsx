@@ -20,10 +20,10 @@ class WebTestClick extends React.Component {
 
     render() {
         return(
-            <label>
-                Selector
+            <div className="form-item">
+                <label>Selector</label>
                 <input type="text" onChange={this.handleChange} value={this.state.selector}/>
-            </label>
+            </div>
         );
     }
 

@@ -27,7 +27,7 @@ class WebTestStyleAttributeList extends React.Component{
         };
         this.setState((state, props) => {
             var newList = [...state.listItems];
-            newList.push({attribute: "other", value: "nice"});
+            newList.push({attribute: "", value: ""});
             return {
                 listItems: newList
             }
@@ -66,14 +66,15 @@ class WebTestStyleAttributeList extends React.Component{
         )
         return(
             <div >
-                <label>
-                    Selector
+                <div className="form-item">
+                    <label>Selector</label>
                     <input type="text" onChange={this.handleSelectorChange} value={this.state.selector} />
-                </label>
+
+                </div>
                 <ul>
                     {items}
                 </ul>
-                <a onClick={this.handleAddItem}>Add item</a>
+                <div style={{width:"10em", textAlign: "right"}}><a onClick={this.handleAddItem}>Add item</a></div>
             </div>
         );
     }

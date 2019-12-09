@@ -30,15 +30,17 @@ class WebTestStyleAttribute extends React.Component {
   render(){
 
     return(
-      <div>
-        <label>
-          Attribute
+      <div style={{border:"1px solid lightgray", padding:"5px"}}>
+        <div className="form-item">
+            <label>Attribute</label>
           <input type="text" name="attribute" value={this.state.attribute} onChange={this.handleAttributeChange} />
-        </label>
-        <label>
-          Value
+
+        </div>
+        <div className="form-item">
+            <label>Value</label>
           <input type="text" name="value" value={this.state.value} onChange={this.handleValueChange} />
-        </label>
+
+        </div>
       </div>
     );
   

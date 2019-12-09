@@ -21,10 +21,10 @@ class WebTestExpectFunctionCalled extends React.Component {
 
     render(){
         return(
-            <label>
-                Function name
+            <div className="form-item">
+            <label>Function name</label>
                 <input type="text" onChange={this.handleChange} value={this.state.functionName}/>
-            </label>
+            </div>
         );
     }
 

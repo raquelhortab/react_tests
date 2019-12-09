@@ -27,15 +27,18 @@ class WebTestSelector extends React.Component {
         console.log("render selector");
         console.log(this.state.kind);
         return (
-            <select value={this.state.kind} onChange={this.handleOnChange}>
-                <option name="test_kind" value="">Select...</option>
-                <option name="test_kind" value="selector_exists">Selector exists</option>
-                <option name="test_kind" value="function_exists">Function exists</option>
-                <option name="test_kind" value="selector_style">Selector style</option>
-                <option name="test_kind" value="click">Click on element</option>
-                <option name="test_kind" value="type">Type in element</option>
-                <option name="test_kind" value="expect_function_called">Expect function called</option>
-            </select>
+            <div className="form-item">
+                <label>Test kind</label>
+                <select value={this.state.kind} onChange={this.handleOnChange}>
+                    <option name="test_kind" value="">Select...</option>
+                    <option name="test_kind" value="selector_exists">Selector exists</option>
+                    <option name="test_kind" value="function_exists">Function exists</option>
+                    <option name="test_kind" value="selector_style">Selector style</option>
+                    <option name="test_kind" value="click">Click on element</option>
+                    <option name="test_kind" value="type">Type in element</option>
+                    <option name="test_kind" value="expect_function_called">Expect function called</option>
+                </select>
+            </div>
         );
     }
 

@@ -32,14 +32,14 @@ class WebTestType extends React.Component {
     render() {
         return(
             <div>
-                <label>
-                    Selector
+                <div className="form-item">
+                    <label>Selector</label>
                     <input type="text" onChange={this.handleChangeSelector} name="selector" value={this.state.selector}/>
-                </label>
-                <label>
-                    Text
+                </div>
+                <div className="form-item">
+                <label>Text</label>
                     <input type="text" onChange={this.handleChangeValue} name="value" value={this.state.value}/>
-                </label>
+                </div>
             </div>
         );
     }

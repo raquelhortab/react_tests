@@ -59,16 +59,20 @@ class WebTestList extends React.Component {
         var items = this.state.testList.map((item,index) => {
             return(
                 <li key={item.key}>
-                    <span>Test {index+1}</span><br/>
+                    <fieldset>
+                    <legend>Test {index+1}</legend><br/>
                     <WebTest index={index} key={item.key} initialState={item.value}/>
                     <a onClick={this.handleRemoveTest.bind(this, item.key)}>Remove test</a>
+                    </fieldset>
                 </li>
             );
         });
 
         return(
             <div>
+                <ul style={{ listStyleType: "none" }}>
                 {items}
+                </ul>
                 <a onClick={this.handleAddTest}>Add test</a>
             </div>
         );
