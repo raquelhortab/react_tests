@@ -36,20 +36,26 @@ class WebTest extends React.Component {
                 stepList: newList,
                 lastKey: state.lastKey + 1
             }
-        }, this.updateObject);
+        });
     }
 
     handleStepChange(index, newElement){
+        var callback = function () {
+            this.props.handler(this.index, this.state);
+        };
         this.setState((state, props) => {
             var newList = [...state.stepList];
             newList[index].value = newElement;
             return {
                 stepList: newList
             }
-        }, this.updateObject);
+        }, callback);
     }
 
     handleKindChange(index, newKind){
+        var callback = function () {
+            this.props.handler(this.index, this.state);
+        };
         this.setState((state, props) => {
             var newList = [...state.stepList];
             newList[index].kind = newKind;
@@ -57,19 +63,19 @@ class WebTest extends React.Component {
             return {
                 stepList: newList
             }
-        },this.updateObject);
+        },callback);
     }
 
     handleRemoveStep(key){
         var callback = function () {
-            this.updateObject();
+            this.props.handler(this.index, this.state);
         };
         this.setState((state, props) => {
             var newList = state.stepList.filter((val, i) => val.key != key);
             return {
                 stepList: newList
             }
-        }, this.updateObject);
+        }, callback);
     }
 
     getComponent(kind){

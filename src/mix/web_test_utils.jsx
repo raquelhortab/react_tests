@@ -130,20 +130,26 @@ class WebTest extends React.Component {
                 stepList: newList,
                 lastKey: state.lastKey + 1
             }
-        }, this.updateObject);
+        });
     }
 
     handleStepChange(index, newElement){
+        var callback = function () {
+            this.props.handler(this.index, this.state);
+        };
         this.setState((state, props) => {
             var newList = [...state.stepList];
             newList[index].value = newElement;
             return {
                 stepList: newList
             }
-        }, this.updateObject);
+        }, callback);
     }
 
     handleKindChange(index, newKind){
+        var callback = function () {
+            this.props.handler(this.index, this.state);
+        };
         this.setState((state, props) => {
             var newList = [...state.stepList];
             newList[index].kind = newKind;
@@ -151,19 +157,19 @@ class WebTest extends React.Component {
             return {
                 stepList: newList
             }
-        },this.updateObject);
+        },callback);
     }
 
     handleRemoveStep(key){
         var callback = function () {
-            this.updateObject();
+            this.props.handler(this.index, this.state);
         };
         this.setState((state, props) => {
             var newList = state.stepList.filter((val, i) => val.key != key);
             return {
                 stepList: newList
             }
-        }, this.updateObject);
+        }, callback);
     }
 
     getComponent(kind){
@@ -270,8 +276,9 @@ class WebTestList extends React.Component {
     }
 
     updateObject(){
-        window.web_test = this.state.testList;
-        console.log(window.web_test);
+        window.web_tests = this.state.testList;
+        console.log(window.web_tests);
+        if(window.updateWebTests != undefined) window.updateWebTests();
     }
 
     render() {
@@ -280,7 +287,7 @@ class WebTestList extends React.Component {
                 <li key={item.key}>
                     <fieldset>
                     <legend>Test {index+1}</legend><br/>
-                    <WebTest index={index} key={item.key} initialState={item.value}/>
+                    <WebTest index={index} key={item.key} initialState={item.value} handler={this.handleChangeTest.bind(this)}/>
                     <a onClick={this.handleRemoveTest.bind(this, item.key)}>Remove test</a>
                     </fieldset>
                 </li>

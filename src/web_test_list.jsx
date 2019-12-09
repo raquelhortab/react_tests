@@ -51,8 +51,9 @@ class WebTestList extends React.Component {
     }
 
     updateObject(){
-        window.web_test = this.state.testList;
-        console.log(window.web_test);
+        window.web_tests = this.state.testList;
+        console.log(window.web_tests);
+        if(window.updateWebTests != undefined) window.updateWebTests();
     }
 
     render() {
@@ -61,7 +62,7 @@ class WebTestList extends React.Component {
                 <li key={item.key}>
                     <fieldset>
                     <legend>Test {index+1}</legend><br/>
-                    <WebTest index={index} key={item.key} initialState={item.value}/>
+                    <WebTest index={index} key={item.key} initialState={item.value} handler={this.handleChangeTest.bind(this)}/>
                     <a onClick={this.handleRemoveTest.bind(this, item.key)}>Remove test</a>
                     </fieldset>
                 </li>
