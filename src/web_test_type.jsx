@@ -5,12 +5,17 @@ class WebTestType extends React.Component {
 
     constructor(props) {
         super(props);
-        var selector = props.initialSelector ? props.initialSelector : ""
-        var value = props.initialValue ? props.initialValue : ""
-        this.state = {
-            selector: selector,
-            value: value
-        };
+        if(props.initialState){
+            this.state = props.initialState;
+        }
+        else{
+            var selector = props.initialSelector ? props.initialSelector : ""
+            var value = props.initialValue ? props.initialValue : ""
+            this.state = {
+                selector: selector,
+                value: value
+            };
+        }
         this.handleChangeSelector = this.handleChangeSelector.bind(this);
         this.handleChangeValue = this.handleChangeValue.bind(this);
     }

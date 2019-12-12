@@ -19,8 +19,6 @@ class WebTestList extends React.Component {
         this.setState((state, props) => {
             var newList = [...state.testList];
             newList.push({value: undefined, key: state.lastKey + 1});
-            console.log("new")
-            console.log(newList)
             return {
                 testList: newList,
                 lastKey: state.lastKey + 1
@@ -52,7 +50,6 @@ class WebTestList extends React.Component {
 
     updateObject(){
         window.web_tests = this.state.testList;
-        console.log(window.web_tests);
         if(window.updateWebTests != undefined) window.updateWebTests();
     }
 

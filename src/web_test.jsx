@@ -41,7 +41,7 @@ class WebTest extends React.Component {
 
     handleStepChange(index, newElement){
         var callback = function () {
-            this.props.handler(this.index, this.state);
+            this.props.handler(this.props.index, this.state);
         };
         this.setState((state, props) => {
             var newList = [...state.stepList];
@@ -54,7 +54,7 @@ class WebTest extends React.Component {
 
     handleKindChange(index, newKind){
         var callback = function () {
-            this.props.handler(this.index, this.state);
+            this.props.handler(this.props.index, this.state);
         };
         this.setState((state, props) => {
             var newList = [...state.stepList];
@@ -68,7 +68,7 @@ class WebTest extends React.Component {
 
     handleRemoveStep(key){
         var callback = function () {
-            this.props.handler(this.index, this.state);
+            this.props.handler(this.props.index, this.state);
         };
         this.setState((state, props) => {
             var newList = state.stepList.filter((val, i) => val.key != key);
@@ -85,7 +85,9 @@ class WebTest extends React.Component {
             "selector_exists": WebTestSelectorExists,
             "click": WebTestClick,
             "type": WebTestType,
-            "expect_function_called": WebTestExpectFunctionCalled
+            "expect_function_called": WebTestExpectFunctionCalled,
+            "expect_alert": WebTestExpectAlert,
+            "expect_prompt": WebTestExpectPrompt
         };
         if(kind !== undefined && kind in components) {
             return(components[kind])

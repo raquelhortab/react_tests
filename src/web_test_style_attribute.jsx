@@ -5,12 +5,17 @@ class WebTestStyleAttribute extends React.Component {
 
   constructor(props){
     super(props);
-    var attribute = props.initialAttribute ? props.initialAttribute : "";
-    var value = props.initialValue ? props.initialValue : "";
-    this.state = {
-      attribute: attribute,
-      value: value
-    };
+    if(props.initialState){
+      this.state = props.initialState;
+    }
+    else{
+      var attribute = props.initialAttribute ? props.initialAttribute : "";
+      var value = props.initialValue ? props.initialValue : "";
+      this.state = {
+        attribute: attribute,
+        value: value
+      };
+    }
     this.handleAttributeChange = this.handleAttributeChange.bind(this);
     this.handleValueChange = this.handleValueChange.bind(this);
   };

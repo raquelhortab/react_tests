@@ -5,9 +5,14 @@ class WebTestSelector extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            kind:  (props.initialKind ? props.initialKind : "")
-        };
+        if(props.initialState){
+            this.state = props.initialState;
+        }
+        else{
+            this.state = {
+                kind:  (props.initialKind ? props.initialKind : "")
+            };
+        }
         this.handleOnChange = this.handleOnChange.bind(this);
     }
 
@@ -24,8 +29,6 @@ class WebTestSelector extends React.Component {
     }
 
     render() {
-        console.log("render selector");
-        console.log(this.state.kind);
         return (
             <div className="form-item">
                 <label>Test kind</label>
@@ -37,6 +40,8 @@ class WebTestSelector extends React.Component {
                     <option name="test_kind" value="click">Click on element</option>
                     <option name="test_kind" value="type">Type in element</option>
                     <option name="test_kind" value="expect_function_called">Expect function called</option>
+                    <option name="test_kind" value="expect_alert">Expect alert</option>
+                    <option name="test_kind" value="expect_prompt">Expect prompt</option>
                 </select>
             </div>
         );

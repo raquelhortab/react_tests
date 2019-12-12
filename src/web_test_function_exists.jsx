@@ -5,9 +5,14 @@ class WebTestFunctionExists extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {
-            functionName: (props.initialFunctionName ? props.initialFunctionName : "")
-        };
+        if(props.initialState){
+            this.state = props.initialState;
+        }
+        else{
+            this.state = {
+                functionName: (props.initialFunctionName ? props.initialFunctionName : "")
+            };
+        }
         this.handleChange = this.handleChange.bind(this);
     }
 

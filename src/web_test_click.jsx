@@ -5,9 +5,14 @@ class WebTestClick extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            selector: (props.initialSelector ? props.initialSelector : "")
-        };
+        if(props.initialState){
+            this.state = props.initialState;
+        }
+        else{
+            this.state = {
+                selector: (props.initialSelector ? props.initialSelector : "")
+            };
+        }
         this.handleChange = this.handleChange.bind(this);
     }
 

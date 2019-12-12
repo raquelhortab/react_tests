@@ -1,7 +1,4 @@
-//import React, { Component } from "react";
-//import ReactDOM from "react-dom";
-
-class WebTestSelectorExists extends React.Component{
+class WebTestExpectAlert extends React.Component {
 
     constructor(props) {
         super(props);
@@ -9,8 +6,9 @@ class WebTestSelectorExists extends React.Component{
             this.state = props.initialState;
         }
         else{
+            var message = props.initialMessage ? props.initialMessage : "";
             this.state = {
-                selector: (props.initialSelector ? props.initialSelector : "")
+                message: message
             };
         }
         this.handleChange = this.handleChange.bind(this);
@@ -20,19 +18,16 @@ class WebTestSelectorExists extends React.Component{
         var handlerCallback = () => {
             this.props.handler(this.props.index, this.state)
         };
-        this.setState({selector: event.target.value}, handlerCallback);
+        this.setState({message: event.target.value}, handlerCallback);
     };
 
-    render() {
+    render(){
         return(
             <div className="form-item">
-                <label>Selector </label>
-                <input type="text" onChange={this.handleChange} value={this.state.selector}/>
-
+                <label>Message</label>
+                <input type="text" onChange={this.handleChange} value={this.state.message}/>
             </div>
         );
     }
 
 }
-
-//export default WebTestSelectorExists;

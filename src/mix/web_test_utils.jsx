@@ -1,3 +1,4 @@
+
 //import React, { Component } from "react";
 //import ReactDOM from "react-dom";
 
@@ -5,9 +6,14 @@ class WebTestClick extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            selector: (props.initialSelector ? props.initialSelector : "")
-        };
+        if(props.initialState){
+            this.state = props.initialState;
+        }
+        else{
+            this.state = {
+                selector: (props.initialSelector ? props.initialSelector : "")
+            };
+        }
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -29,17 +35,21 @@ class WebTestClick extends React.Component {
 
 }
 
-//export default WebTestClick;//import React, { Component } from "react";
-//import ReactDOM from "react-dom";
+//export default WebTestClick;
 
-class WebTestExpectFunctionCalled extends React.Component {
+class WebTestExpectAlert extends React.Component {
 
     constructor(props) {
         super(props);
-        var functionName = props.initialFunctionName ? props.initialFunctionName : "";
-        this.state = {
-            functionName: functionName
-        };
+        if(props.initialState){
+            this.state = props.initialState;
+        }
+        else{
+            var message = props.initialMessage ? props.initialMessage : "";
+            this.state = {
+                message: message
+            };
+        }
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -47,7 +57,44 @@ class WebTestExpectFunctionCalled extends React.Component {
         var handlerCallback = () => {
             this.props.handler(this.props.index, this.state)
         };
-        this.setState({selector: event.target.functionName}, handlerCallback);
+        this.setState({message: event.target.value}, handlerCallback);
+    };
+
+    render(){
+        return(
+            <div className="form-item">
+                <label>Message</label>
+                <input type="text" onChange={this.handleChange} value={this.state.message}/>
+            </div>
+        );
+    }
+
+}
+
+//import React, { Component } from "react";
+//import ReactDOM from "react-dom";
+
+class WebTestExpectFunctionCalled extends React.Component {
+
+    constructor(props) {
+        super(props);
+        if(props.initialState){
+            this.state = props.initialState;
+        }
+        else{
+            var functionName = props.initialFunctionName ? props.initialFunctionName : "";
+            this.state = {
+                functionName: functionName
+            };
+        }
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+        var handlerCallback = () => {
+            this.props.handler(this.props.index, this.state)
+        };
+        this.setState({functionName: event.target.value}, handlerCallback);
     };
 
     render(){
@@ -61,16 +108,73 @@ class WebTestExpectFunctionCalled extends React.Component {
 
 }
 
-//export default WebTestExpectFunctionCalled;//import React, { Component } from "react";
+//export default WebTestExpectFunctionCalled;
+
+class WebTestExpectPrompt extends React.Component {
+
+    constructor(props) {
+        super(props);
+        if(props.initialState){
+            this.state = props.initialState;
+        }
+        else{
+            var message = props.initialMessage ? props.initialMessage : "";
+            var input = props.initialInput ? props.initialInput : "";
+            this.state = {
+                message: message,
+                input: input
+            };
+        }
+        this.handleMessageChange = this.handleMessageChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    handleMessageChange(event) {
+        var handlerCallback = () => {
+            this.props.handler(this.props.index, this.state)
+        };
+        this.setState({message: event.target.value}, handlerCallback);
+    };
+
+    handleInputChange(event) {
+        var handlerCallback = () => {
+            this.props.handler(this.props.index, this.state)
+        };
+        this.setState({input: event.target.value}, handlerCallback);
+    };
+
+    render(){
+        return(
+            <div>
+                <div className="form-item">
+                    <label>Message</label>
+                    <input type="text" onChange={this.handleMessageChange} value={this.state.message}/>
+                </div>
+                <div className="form-item">
+                    <label>Input</label>
+                    <input type="text" onChange={this.handleInputChange} value={this.state.input}/>
+                </div>
+            </div>
+        );
+    }
+
+}
+
+//import React, { Component } from "react";
 //import ReactDOM from "react-dom";
 
 class WebTestFunctionExists extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {
-            functionName: (props.initialFunctionName ? props.initialFunctionName : "")
-        };
+        if(props.initialState){
+            this.state = props.initialState;
+        }
+        else{
+            this.state = {
+                functionName: (props.initialFunctionName ? props.initialFunctionName : "")
+            };
+        }
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -92,7 +196,9 @@ class WebTestFunctionExists extends React.Component{
 
 }
 
-//export default WebTestFunctionExists;//import React, { Component } from "react";
+//export default WebTestFunctionExists;
+
+//import React, { Component } from "react";
 // import WebTestStyleAttributeList from "./web_test_style_attribute_list.jsx"
 // import WebTestFunctionExists from "./web_test_function_exists.jsx"
 // import WebTestSelectorExists from "./web_test_selector_exists.jsx"
@@ -135,7 +241,7 @@ class WebTest extends React.Component {
 
     handleStepChange(index, newElement){
         var callback = function () {
-            this.props.handler(this.index, this.state);
+            this.props.handler(this.props.index, this.state);
         };
         this.setState((state, props) => {
             var newList = [...state.stepList];
@@ -148,7 +254,7 @@ class WebTest extends React.Component {
 
     handleKindChange(index, newKind){
         var callback = function () {
-            this.props.handler(this.index, this.state);
+            this.props.handler(this.props.index, this.state);
         };
         this.setState((state, props) => {
             var newList = [...state.stepList];
@@ -162,7 +268,7 @@ class WebTest extends React.Component {
 
     handleRemoveStep(key){
         var callback = function () {
-            this.props.handler(this.index, this.state);
+            this.props.handler(this.props.index, this.state);
         };
         this.setState((state, props) => {
             var newList = state.stepList.filter((val, i) => val.key != key);
@@ -179,7 +285,9 @@ class WebTest extends React.Component {
             "selector_exists": WebTestSelectorExists,
             "click": WebTestClick,
             "type": WebTestType,
-            "expect_function_called": WebTestExpectFunctionCalled
+            "expect_function_called": WebTestExpectFunctionCalled,
+            "expect_alert": WebTestExpectAlert,
+            "expect_prompt": WebTestExpectPrompt
         };
         if(kind !== undefined && kind in components) {
             return(components[kind])
@@ -223,7 +331,9 @@ class WebTest extends React.Component {
     }
 }
 
-//export default WebTest;//import React, { Component } from "react";
+//export default WebTest;
+
+//import React, { Component } from "react";
 //import ReactDOM from "react-dom";
 // import WebTest from "./web_test.jsx";
 
@@ -244,8 +354,6 @@ class WebTestList extends React.Component {
         this.setState((state, props) => {
             var newList = [...state.testList];
             newList.push({value: undefined, key: state.lastKey + 1});
-            console.log("new")
-            console.log(newList)
             return {
                 testList: newList,
                 lastKey: state.lastKey + 1
@@ -277,7 +385,6 @@ class WebTestList extends React.Component {
 
     updateObject(){
         window.web_tests = this.state.testList;
-        console.log(window.web_tests);
         if(window.updateWebTests != undefined) window.updateWebTests();
     }
 
@@ -306,16 +413,23 @@ class WebTestList extends React.Component {
 
 }
 
-//export default WebTestList;//import React, { Component } from "react";
+//export default WebTestList;
+
+//import React, { Component } from "react";
 //import ReactDOM from "react-dom";
 
 class WebTestSelectorExists extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {
-            selector: (props.initialSelector ? props.initialSelector : "")
-        };
+        if(props.initialState){
+            this.state = props.initialState;
+        }
+        else{
+            this.state = {
+                selector: (props.initialSelector ? props.initialSelector : "")
+            };
+        }
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -338,16 +452,23 @@ class WebTestSelectorExists extends React.Component{
 
 }
 
-//export default WebTestSelectorExists;//import React, { Component } from "react";
+//export default WebTestSelectorExists;
+
+//import React, { Component } from "react";
 //import ReactDOM from "react-dom";
 
 class WebTestSelector extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            kind:  (props.initialKind ? props.initialKind : "")
-        };
+        if(props.initialState){
+            this.state = props.initialState;
+        }
+        else{
+            this.state = {
+                kind:  (props.initialKind ? props.initialKind : "")
+            };
+        }
         this.handleOnChange = this.handleOnChange.bind(this);
     }
 
@@ -364,8 +485,6 @@ class WebTestSelector extends React.Component {
     }
 
     render() {
-        console.log("render selector");
-        console.log(this.state.kind);
         return (
             <div className="form-item">
                 <label>Test kind</label>
@@ -377,6 +496,8 @@ class WebTestSelector extends React.Component {
                     <option name="test_kind" value="click">Click on element</option>
                     <option name="test_kind" value="type">Type in element</option>
                     <option name="test_kind" value="expect_function_called">Expect function called</option>
+                    <option name="test_kind" value="expect_alert">Expect alert</option>
+                    <option name="test_kind" value="expect_prompt">Expect prompt</option>
                 </select>
             </div>
         );
@@ -384,19 +505,26 @@ class WebTestSelector extends React.Component {
 
 }
 
-//export default WebTestSelector;//import React, { Component } from "react";
+//export default WebTestSelector;
+
+//import React, { Component } from "react";
 //import ReactDOM from "react-dom";
 
 class WebTestStyleAttribute extends React.Component {
 
   constructor(props){
     super(props);
-    var attribute = props.initialAttribute ? props.initialAttribute : "";
-    var value = props.initialValue ? props.initialValue : "";
-    this.state = {
-      attribute: attribute,
-      value: value
-    };
+    if(props.initialState){
+      this.state = props.initialState;
+    }
+    else{
+      var attribute = props.initialAttribute ? props.initialAttribute : "";
+      var value = props.initialValue ? props.initialValue : "";
+      this.state = {
+        attribute: attribute,
+        value: value
+      };
+    }
     this.handleAttributeChange = this.handleAttributeChange.bind(this);
     this.handleValueChange = this.handleValueChange.bind(this);
   };
@@ -434,7 +562,9 @@ class WebTestStyleAttribute extends React.Component {
 
 }
 
-//export default WebTestStyleAttribute;//import React, { Component } from "react";
+//export default WebTestStyleAttribute;
+
+//import React, { Component } from "react";
 //import ReactDOM from "react-dom";
 // import WebTestStyleAttribute from "./web_test_style_attribute.jsx";
 
@@ -516,19 +646,26 @@ class WebTestStyleAttributeList extends React.Component{
     }
 }
 
-//export default WebTestStyleAttributeList;//import React, { Component } from "react";
+//export default WebTestStyleAttributeList;
+
+//import React, { Component } from "react";
 //import ReactDOM from "react-dom";
 
 class WebTestType extends React.Component {
 
     constructor(props) {
         super(props);
-        var selector = props.initialSelector ? props.initialSelector : ""
-        var value = props.initialValue ? props.initialValue : ""
-        this.state = {
-            selector: selector,
-            value: value
-        };
+        if(props.initialState){
+            this.state = props.initialState;
+        }
+        else{
+            var selector = props.initialSelector ? props.initialSelector : ""
+            var value = props.initialValue ? props.initialValue : ""
+            this.state = {
+                selector: selector,
+                value: value
+            };
+        }
         this.handleChangeSelector = this.handleChangeSelector.bind(this);
         this.handleChangeValue = this.handleChangeValue.bind(this);
     }

@@ -5,10 +5,15 @@ class WebTestExpectFunctionCalled extends React.Component {
 
     constructor(props) {
         super(props);
-        var functionName = props.initialFunctionName ? props.initialFunctionName : "";
-        this.state = {
-            functionName: functionName
-        };
+        if(props.initialState){
+            this.state = props.initialState;
+        }
+        else{
+            var functionName = props.initialFunctionName ? props.initialFunctionName : "";
+            this.state = {
+                functionName: functionName
+            };
+        }
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -16,7 +21,7 @@ class WebTestExpectFunctionCalled extends React.Component {
         var handlerCallback = () => {
             this.props.handler(this.props.index, this.state)
         };
-        this.setState({selector: event.target.functionName}, handlerCallback);
+        this.setState({functionName: event.target.value}, handlerCallback);
     };
 
     render(){
